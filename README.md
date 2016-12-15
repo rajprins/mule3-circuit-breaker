@@ -11,9 +11,9 @@ Heavily based on [John D'Emic's article](http://blogs.mulesoft.org/implementing-
 
 
 **Use**
-1. Install the Circuit Breaker component (see section 'Installation')
-2. Add the Circuit Breaker component to your flow. Select the "Filter" operation.
-3. Add the Circuit breaker component to your exception handling strategy. Select the "trip" operation.
+- Install the Circuit Breaker component (see section 'Installation')
+- Add the Circuit Breaker component to your flow. Select the "Filter" operation.
+- Add the Circuit breaker component to your exception handling strategy. Select the "trip" operation.  
 
 **Example**
 ``` XML
