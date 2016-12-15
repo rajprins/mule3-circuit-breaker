@@ -1,0 +1,15 @@
+<flow name="testFlow">
+    <vm:inbound-endpoint path="vm.in"/>
+    <!-- BEGIN_INCLUDE(circuitbreaker:filter) -->
+    <circuitbreaker:filter/>
+    <!-- END_INCLUDE(circuitbreaker:filter) -->
+    <test:component throwException="true"/>
+    <vm:outbound-endpoint path="vm.out"/>
+    <default-exception-strategy>
+    <!-- BEGIN_INCLUDE(circuitbreaker:trip) -->
+        <circuitbreaker:trip tripOnException="org.mule.tck.exceptions.FunctionalTestException"/>
+    <!-- END_INCLUDE(circuitbreaker:trip) -->
+    </default-exception-strategy>
+</flow>  
+    
+    
