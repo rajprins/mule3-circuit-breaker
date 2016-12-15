@@ -4,6 +4,7 @@ import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.components.Configuration;
 import org.mule.api.annotations.display.FriendlyName;
 import org.mule.api.annotations.display.Placement;
+import org.mule.api.annotations.param.Default;
 
 /**
  * Configuration holder for Circuit Breaker
@@ -17,7 +18,7 @@ public class CircuitBreakerConfig {
 	 * The amount of failures (exceptions) until the circuit breaker is tripped.
 	 */
 	@Configurable
-	//@Default("5")
+	@Default("3")
 	@Placement(group = "Circuit Breaker Settings")
 	@FriendlyName("Failure threshold")
 	private int tripThreshold;
@@ -26,7 +27,7 @@ public class CircuitBreakerConfig {
 	 * How long to wait (in milliseconds) until the breaker is automatically reset.
 	 */
 	@Configurable
-	//@Default("60000")
+	@Default("60000")
 	@Placement(group = "Circuit Breaker Settings")
 	@FriendlyName("Failure count reset time (ms)")
 	private long tripResetTime;

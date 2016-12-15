@@ -13,7 +13,8 @@ Heavily based on [John D'Emic's article](http://blogs.mulesoft.org/implementing-
 **Use**
 - Install the Circuit Breaker component (see section 'Installation')
 - Add the Circuit Breaker component to your flow. Select the "Filter" operation.
-- Add the Circuit breaker component to your exception handling strategy. Select the "trip" operation.  
+- Add the Circuit breaker component to your exception handling strategy and select the "trip" operation.
+- Configure the exception (by classname) to be observed by the Circuit Breaker.
 
 **Example**
 ``` XML
@@ -30,5 +31,9 @@ Heavily based on [John D'Emic's article](http://blogs.mulesoft.org/implementing-
    </catch-exception-strategy>
 </flow>
 ```
-In this example the flow will stop executing the Java component 'ConnectionComponent' after three failed attempts.
-After 30 seconds the situation is reset and the flow will start executing the Java component again.
+In this example a custom Java component throws an exception to simulate the unavailability of an external resource.
+The Java component throws an exception named 'ConnectionNotAvailbleException'.  
+
+The circuit breaker component is used to prevent executing the Java component in case of too many failures (exceptions). The circuit breaker is configured to trip on three catches of the ConnectionNotAvailbleException exception.
+After 30 seconds (configured as 30000 milliseconds), the failure count is reset and the Java component will be executed again.
+
