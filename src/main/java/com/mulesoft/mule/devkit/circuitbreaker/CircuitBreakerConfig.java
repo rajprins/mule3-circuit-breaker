@@ -1,3 +1,11 @@
+/**
+ *
+ * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
+ *
+ * The software in this package is published under the terms of the CPAL v1.0
+ * license, a copy of which has been included with this distribution in the
+ * LICENSE.txt file.
+ */
 package com.mulesoft.mule.devkit.circuitbreaker;
 
 import org.mule.api.annotations.Configurable;
@@ -15,20 +23,20 @@ import org.mule.api.annotations.param.Default;
 @Configuration(configElementName = "config", friendlyName = "config")
 public class CircuitBreakerConfig {
 	/**
-	 * The amount of failures (exceptions) until the circuit breaker is tripped.
+	 * The amount of failures (exceptions thrown/caught) until the circuit breaker is tripped.
 	 */
 	@Configurable
 	@Default("3")
-	@Placement(group = "Circuit Breaker Settings")
+	@Placement(order = 1, group = "Circuit Breaker Settings")
 	@FriendlyName("Failure threshold")
 	private int tripThreshold;
 
 	/**
-	 * How long to wait (in milliseconds) until the breaker is automatically reset.
+	 * How long to wait (in milliseconds) until the breaker's failure count is reset.
 	 */
 	@Configurable
 	@Default("60000")
-	@Placement(group = "Circuit Breaker Settings")
+	@Placement(order = 2, group = "Circuit Breaker Settings")
 	@FriendlyName("Failure count reset time (ms)")
 	private long tripResetTime;
 
@@ -36,7 +44,7 @@ public class CircuitBreakerConfig {
 	 * The name of this breaker.
 	 */
 	@Configurable
-	@Placement(group = "Circuit Breaker Settings")
+	@Placement(order = 3, group = "Circuit Breaker Settings")
 	private String breakerName;
 
 	public void setTripThreshold(int tripThreshold) {
