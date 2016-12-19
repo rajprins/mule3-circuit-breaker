@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule 
+	xmlns:circuitbreaker="http://www.mulesoft.org/schema/mule/circuitbreaker"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" 
+	xmlns="http://www.mulesoft.org/schema/mule/core" 
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/circuitbreaker http://www.mulesoft.org/schema/mule/circuitbreaker/current/mule-circuitbreaker.xsd">
+
+
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <circuitbreaker:config name="Circuit_Breaker__config" tripThreshold="3" tripResetTime="3000" breakerName="MyBreaker" doc:name="Circuit Breaker: config"/>
+    
+    <flow name="circuitbreaker-testFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/cbtest" allowedMethods="GET" doc:name="HTTP"/>
+        <circuitbreaker:filter config-ref="Circuit_Breaker__config" doc:name="Circuit Breaker"/>
+        <component class="com.mulesoft.training.demo.components.ConnectionComponent" doc:name="ConnectionComponent"/>
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
+            <circuitbreaker:trip config-ref="Circuit_Breaker__config" tripOnException="com.mulesoft.training.demo.exceptions.ConnectionNotAvailbleException" doc:name="Circuit Breaker"/>
+            <logger message="Tripped on exception 'ConnectionNotAvailbleException'" level="INFO" doc:name="Logger"/>
+            <set-payload value="#[groovy:message.getExceptionPayload().getRootException().getMessage()]" doc:name="Set Payload"/>
+        </catch-exception-strategy>
+    </flow>
+</mule>
