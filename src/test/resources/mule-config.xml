@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:circuitbreaker="http://www.mulesoft.org/schema/mule/circuitbreaker"
-      xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-        http://www.mulesoft.org/schema/mule/circuitbreaker http://www.mulesoft.org/schema/mule/circuitbreaker/0.0.2-SNAPSHOT/mule-circuitbreaker.xsd">
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/circuitbreaker http://www.mulesoft.org/schema/mule/circuitbreaker/0.0.2-SNAPSHOT/mule-circuitbreaker.xsd">
 
-    <circuitbreaker:config myProperty="Some string"/>
+    <circuitbreaker:config breakerName="myCircuitBreaker" name="breaker" myProperty="Some string" doc:name="Circuit Breaker: config"/>
 
     <flow name="testFlow">
-        <circuitbreaker:my-processor content="Another string"/>
+        <circuitbreaker:filter config-ref="breaker" doc:name="Circuit Breaker"/>
     </flow>
 
 </mule>
