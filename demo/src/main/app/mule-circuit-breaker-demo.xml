@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/circuitbreaker http://www.mulesoft.org/schem
 
 
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
-    <circuitbreaker:config name="Circuit_Breaker__config" tripThreshold="3" tripResetTime="3000" breakerName="MyBreaker" doc:name="Circuit Breaker: config"/>
+    <circuitbreaker:config name="Circuit_Breaker__config"  tripResetTime="3000" breakerName="MyBreaker" doc:name="Circuit Breaker: config"/>
     
     <flow name="circuitbreaker-testFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/cbtest" allowedMethods="GET" doc:name="HTTP"/>

@@ -14,6 +14,8 @@ public class ConnectionComponent implements Callable {
 	public Object onCall(MuleEventContext eventContext) throws Exception {
 		log.info("Executing ConnectionComponent");
 		
+		System.out.println("Connecting to external resource...");
+		
 		//Emulate some processing time
 		Thread.sleep(3000);
 		
