@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mulesoft.mule.devkit</groupId>
     <artifactId>circuitbreaker</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>mule-module</packaging>
     <name>Circuit Breaker</name>
 
@@ -16,11 +16,10 @@
     <properties>
         <junit.version>4.9</junit.version>
         <mockito.version>1.8.2</mockito.version>
-        <jdk.version>1.7</jdk.version>
         <category>Community</category>
         <licensePath>LICENSE.md</licensePath>
         <devkit.studio.package.skip>false</devkit.studio.package.skip>
-    <mule.version>3.8.3</mule.version>
+        <mule.version>3.8.3</mule.version>
     </properties>
 
     <repositories>
@@ -44,11 +43,4 @@
         <url>http://github.com/rajprins/mule-circuit-breaker</url>
     </scm>
 
-<dependencies>
-        <dependency>
-            <groupId>com.mulesoft.mule.devkit</groupId>
-            <artifactId>circuitbreaker</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 </project>
