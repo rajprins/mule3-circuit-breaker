@@ -4,7 +4,7 @@
  *
  * The software in this package is published under the terms of the CPAL v1.0
  * license, a copy of which has been included with this distribution in the
- * LICENSE.txt file.
+ * LICENSE.md file.
  */
 package com.mulesoft.mule.devkit.circuitbreaker;
 
@@ -22,53 +22,54 @@ import org.mule.api.annotations.param.Default;
  */
 @Configuration(configElementName = "config", friendlyName = "config")
 public class CircuitBreakerConfig {
-   /**
-    * The amount of failures (exceptions thrown/caught) until the circuit breaker is tripped.
-    */
-   @Configurable
-   @Default("3")
-   @Placement(order = 1, group = "Circuit Breaker Settings")
-   @FriendlyName("Failure threshold")
-   private int tripThreshold;
 
-   /**
-    * How long to wait (in milliseconds) until the breaker's failure count is reset.
-    */
-   @Configurable
-   @Default("60000")
-   @Placement(order = 2, group = "Circuit Breaker Settings")
-   @FriendlyName("Failure count reset time (ms)")
-   private long tripResetTime;
+    /**
+     * The amount of failures (exceptions thrown/caught) until the circuit breaker is tripped.
+     */
+    @Configurable
+    @Default("3")
+    @Placement(order = 1, group = "Circuit Breaker Settings")
+    @FriendlyName("Failure threshold")
+    private int tripThreshold;
 
-   /**
-    * The name of this breaker.
-    */
-   @Configurable
-   @Placement(order = 3, group = "Circuit Breaker Settings")
-   private String breakerName;
+    /**
+     * How long to wait (in milliseconds) until the breaker's failure count is reset.
+     */
+    @Configurable
+    @Default("60000")
+    @Placement(order = 2, group = "Circuit Breaker Settings")
+    @FriendlyName("Failure count reset time (ms)")
+    private long tripResetTime;
 
-   public void setTripThreshold(int tripThreshold) {
-      this.tripThreshold = tripThreshold;
-   }
+    /**
+     * The name of this breaker.
+     */
+    @Configurable
+    @Placement(order = 3, group = "Circuit Breaker Settings")
+    private String breakerName;
 
-   public int getTripThreshold() {
-      return tripThreshold;
-   }
+    public void setTripThreshold(int tripThreshold) {
+        this.tripThreshold = tripThreshold;
+    }
 
-   public void setTripResetTime(long tripTimeout) {
-      this.tripResetTime = tripTimeout;
-   }
+    public int getTripThreshold() {
+        return tripThreshold;
+    }
 
-   public long getTripResetTime() {
-      return tripResetTime;
-   }
+    public void setTripResetTime(long tripTimeout) {
+        this.tripResetTime = tripTimeout;
+    }
 
-   public void setBreakerName(String breakerName) {
-      this.breakerName = breakerName;
-   }
+    public long getTripResetTime() {
+        return tripResetTime;
+    }
 
-   public String getBreakerName() {
-      return breakerName;
-   }
+    public void setBreakerName(String breakerName) {
+        this.breakerName = breakerName;
+    }
+
+    public String getBreakerName() {
+        return breakerName;
+    }
 
 }
